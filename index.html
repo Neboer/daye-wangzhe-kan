@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东北大学通行验证</title>
+</head>
+
+<body>
+    <div class="upper">
+        <div style="font-size: xx-large;">东北大学通行验证</div>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-up" role="img"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+            class="svg-inline--fa fa-arrow-circle-up fa-w-16 fa-lg">
+            <path fill="currentColor"
+                d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm143.6 28.9l72.4-75.5V392c0 13.3 10.7 24 24 24h16c13.3 0 24-10.7 24-24V209.4l72.4 75.5c9.3 9.7 24.8 9.9 34.3.4l10.9-11c9.4-9.4 9.4-24.6 0-33.9L273 107.7c-9.4-9.4-24.6-9.4-33.9 0L106.3 240.4c-9.4 9.4-9.4 24.6 0 33.9l10.9 11c9.6 9.5 25.1 9.3 34.4-.4z"
+                class=""></path>
+        </svg>
+        <div id="time">时间：</div>
+    </div>
+    <div class="downer">
+        <div class="outter-line">
+            <div class="lines"><span>学工号</span></div>：<span id="stu_number">.</span>
+        </div>
+        <div class="outter-line">
+            <div class="lines"><span>姓名</span></div>：<span id="stu_name">.</span>
+        </div>
+        <div class="outter-line">
+            <div class="lines"><span>验证位置</span></div>：<span id="stu_location">.</span>
+        </div>
+        <div class="outter-line">
+            <div class="lines"><span>验证状态</span></div>：进入
+        </div>
+    </div>
+
+</body>
+<style>
+    @keyframes arrow {
+        0% {
+            transform: scale(1,1);
+        }
+
+        50% {
+            transform: scale(1.3,1.3);
+        }
+
+        100% {
+            transform: scale(1,1);
+        }
+    }
+
+    #time {
+        font-size: larger;
+    }
+
+    #svg {
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    svg {
+        width: 190px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        animation-name: arrow;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+
+    div span {
+        width: 5em;
+    }
+
+    .lines {
+        display: inline-block;
+        text-align: justify;
+        text-align-last: justify;
+        width: 4em;
+    }
+
+    .lines span {
+        text-align: justify;
+    }
+
+    .downer {
+        background-color: darkgreen;
+        color: white;
+        padding: 10px;
+        font-size: larger;
+    }
+
+    .upper {
+        text-align: center;
+        color: darkgreen;
+        margin-bottom: 20px;
+    }
+
+    .outter-line {
+        margin: 10px;
+    }
+</style>
+<script>
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
+    document.getElementById("time").innerText = "时间： " + dateTime
+    var input_string = decodeURI(window.location.hash)
+    var data = input_string.substr(1,input_string.length).split(',')
+    document.getElementById("stu_number").innerText = data[0]
+    document.getElementById("stu_name").innerText = data[1]
+    document.getElementById("stu_location").innerText = data[2]
+</script>
+
+</html>
