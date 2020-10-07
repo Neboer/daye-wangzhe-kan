@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <meta name="csrf-token" content="g5Zj9ZUHuEEat1rDHLAO6yaymNWJgHSiJsAZ7fP7">-->
+    <title>东北大学测温验证平台</title>
+    <link href="./http_apps.neu.edu.cn:8000_personal-health_css_visitor.css" rel="stylesheet" type="text/css">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <style>
+        @-webkit-keyframes pulse {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+        }
+        @keyframes  pulse {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+        }
+        .list-group {
+            padding: 1em;
+        }
+        .list-group-item {
+            font-size: 1.4em;
+            padding: 0.1em;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="card border-0 text-center" style="color: #006633">
+        <div class="card-body">
+            <h2 class="card-title p-2">东北大学通行验证</h2>
+
+            <div class="animated infinite pulse p-2">
+<!--                <i class="fas fa-arrows-alt" style="font-size: 14em;"></i>-->
+                    <svg  style="width: 14em;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-up" class="svg-inline--fa fa-arrow-alt-circle-up fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm292 116V256h70.9c10.7 0 16.1-13 8.5-20.5L264.5 121.2c-4.7-4.7-12.2-4.7-16.9 0l-115 114.3c-7.6 7.6-2.2 20.5 8.5 20.5H212v116c0 6.6 5.4 12 12 12h64c6.6 0 12-5.4 12-12z"></path></svg>
+<!--                <i class="fa fa-camera-retro"></i>-->
+            </div>
+<!--            <i class="fa fa-free-code-camp" aria-hidden="true"></i>-->
+<!--            <i class="fa fa-camera-retro"></i>-->
+
+            <p id="time" class="card-text p-2" style="font-size: 1.3em;">
+                时间：2020-10-07 20:01:25
+            </p>
+        </div>
+    </div>
+
+    <ul class="list-group list-group-flush" style="background-color: #006633">
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">学工号</div>：<div id="stu_number"></div>
+        </li>
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">姓名</div>：<div id="stu_name"></div>
+        </li>
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">验证位置</div>：<div id="stu_location">南湖校区南门</div>
+        </li>
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">进出状态</div>：<div>进入</div>
+        </li>
+            </ul>
+</div>
+</body>
+<script>
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
+    document.getElementById("time").innerText = "时间： " + dateTime
+    var input_string = decodeURI(window.location.hash)
+    var data = input_string.substr(1,input_string.length).split(',')
+    document.getElementById("stu_number").innerText = data[0]
+    document.getElementById("stu_name").innerText = data[1]
+    document.getElementById("stu_location").innerText = data[2]
+</script>
+</html>
