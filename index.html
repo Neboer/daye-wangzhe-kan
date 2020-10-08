@@ -1,105 +1,73 @@
-<!DOCTYPE html>
-<html lang="zh">
-
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <meta name="csrf-token" content="g5Zj9ZUHuEEat1rDHLAO6yaymNWJgHSiJsAZ7fP7">-->
     <title>东北大学测温验证平台</title>
+    <link href="./http_apps.neu.edu.cn:8000_personal-health_css_visitor.css" rel="stylesheet" type="text/css">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <style>
+        @-webkit-keyframes pulse {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+        }
+        @keyframes  pulse {
+            50% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+        }
+        .list-group {
+            padding: 1em;
+        }
+        .list-group-item {
+            font-size: 1.4em;
+            padding: 0.1em;
+            border: 0px;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="upper">
-        <div style="font-size: xx-large;">东北大学通行验证</div>
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-up" role="img"
-            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-            class="svg-inline--fa fa-arrow-circle-up fa-w-16 fa-lg">
-            <path fill="currentColor"
-                d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm143.6 28.9l72.4-75.5V392c0 13.3 10.7 24 24 24h16c13.3 0 24-10.7 24-24V209.4l72.4 75.5c9.3 9.7 24.8 9.9 34.3.4l10.9-11c9.4-9.4 9.4-24.6 0-33.9L273 107.7c-9.4-9.4-24.6-9.4-33.9 0L106.3 240.4c-9.4 9.4-9.4 24.6 0 33.9l10.9 11c9.6 9.5 25.1 9.3 34.4-.4z"
-                class=""></path>
-        </svg>
-        <div id="time">时间：</div>
-    </div>
-    <div class="downer">
-        <div class="outter-line">
-            <div class="lines"><span>学工号</span></div>：<span id="stu_number">.</span>
-        </div>
-        <div class="outter-line">
-            <div class="lines"><span>姓名</span></div>：<span id="stu_name">.</span>
-        </div>
-        <div class="outter-line">
-            <div class="lines"><span>验证位置</span></div>：<span id="stu_location">.</span>
-        </div>
-        <div class="outter-line">
-            <div class="lines"><span>验证状态</span></div>：进入
+
+<div id="app">
+    <div class="card border-0 text-center" style="color: #006633">
+        <div class="card-body">
+            <h2 class="card-title p-2">东北大学通行验证</h2>
+
+            <div class="animated infinite pulse p-2">
+<!--                <i class="fas fa-arrows-alt" style="font-size: 14em;"></i>-->
+                    <svg  style="width: 14em;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-up" class="svg-inline--fa fa-arrow-alt-circle-up fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm292 116V256h70.9c10.7 0 16.1-13 8.5-20.5L264.5 121.2c-4.7-4.7-12.2-4.7-16.9 0l-115 114.3c-7.6 7.6-2.2 20.5 8.5 20.5H212v116c0 6.6 5.4 12 12 12h64c6.6 0 12-5.4 12-12z"></path></svg>
+<!--                <i class="fa fa-camera-retro"></i>-->
+            </div>
+<!--            <i class="fa fa-free-code-camp" aria-hidden="true"></i>-->
+<!--            <i class="fa fa-camera-retro"></i>-->
+
+            <p id="time" class="card-text p-2" style="font-size: 1.3em;">
+                时间：2020-10-07 20:01:25
+            </p>
         </div>
     </div>
 
+    <ul class="list-group list-group-flush" style="background-color: #006633">
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">学工号</div>：<div id="stu_number"></div>
+        </li>
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">姓名</div>：<div id="stu_name"></div>
+        </li>
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">验证位置</div>：<div id="stu_location">南湖校区南门</div>
+        </li>
+        <li class="list-group-item bg-transparent text-white d-flex">
+            <div style="min-width: 4em; text-align-last: justify;">进出状态</div>：<div>进入</div>
+        </li>
+            </ul>
+</div>
 </body>
-<style>
-    @keyframes arrow {
-        0% {
-            transform: scale(1,1);
-        }
-
-        50% {
-            transform: scale(1.3,1.3);
-        }
-
-        100% {
-            transform: scale(1,1);
-        }
-    }
-
-    #time {
-        font-size: larger;
-    }
-
-    #svg {
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    svg {
-        width: 190px;
-        margin-top: 30px;
-        margin-bottom: 20px;
-        animation-name: arrow;
-        animation-duration: 1s;
-        animation-iteration-count: infinite;
-    }
-
-    div span {
-        width: 5em;
-    }
-
-    .lines {
-        display: inline-block;
-        text-align: justify;
-        text-align-last: justify;
-        width: 4em;
-    }
-
-    .lines span {
-        text-align: justify;
-    }
-
-    .downer {
-        background-color: darkgreen;
-        color: white;
-        padding: 10px;
-        font-size: larger;
-    }
-
-    .upper {
-        text-align: center;
-        color: darkgreen;
-        margin-bottom: 20px;
-    }
-
-    .outter-line {
-        margin: 10px;
-    }
-</style>
 <script>
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -112,5 +80,4 @@
     document.getElementById("stu_name").innerText = data[1]
     document.getElementById("stu_location").innerText = data[2]
 </script>
-
 </html>
